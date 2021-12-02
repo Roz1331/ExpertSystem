@@ -168,15 +168,17 @@ namespace ExpertSystem
         {
             if (clipsOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string fileName = clipsOpenFileDialog.FileName;
-                codeBox.Text = System.IO.File.ReadAllText(fileName);
+                string filePath = clipsOpenFileDialog.FileName;
+                codeBox.Text = System.IO.File.ReadAllText(filePath);
 
-                Text = "Экспертная система \"Помощник в выборе бара\" – " + fileName;
+                Text = "Экспертная система \"Помощник в выборе бара\" – " + filePath;
 
                 Parser.ParseFactsAndRules("..\\..\\facts_rules_final.txt", ref initialFacts, ref initialAlcoholFacts, ref initialBudgetFacts,
                     ref initialLocationFacts, ref initialCompanyFacts, ref initialNegativeFacts, ref finalFacts, ref all_rules);
 
                 DisplayAllFacts();
+
+                Parser.ParseRule("test.txt", all_rules);
             }
         }
 

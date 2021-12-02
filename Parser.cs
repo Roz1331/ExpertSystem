@@ -62,7 +62,7 @@ namespace ExpertSystem
                     string[] rule_splites = splited[0].Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
                     Rule rule = new Rule();
                     rule.number = int.Parse(rule_splites[1]);
-                    rule.premises = getPremises(splited[1], allFacts);
+                    rule.premises = getPremises(splited[1]);
                     rule.conclusion = ParseFact(splited[2]);
                     rule.description = splited[3];
                     all_rules.Add(rule);
@@ -102,7 +102,7 @@ namespace ExpertSystem
             return new Fact(ClipsFormsExample.FactType.intermediate, int.Parse(item_id), item_description);
         }
 
-        static List<Fact> getPremises(string str, List<Fact> allFacts)
+        static List<Fact> getPremises(string str)
         {
             List<Fact> res = new List<Fact>();
 
@@ -113,6 +113,51 @@ namespace ExpertSystem
             }
 
             return res;
+        }
+
+
+        public static void ParseRule(string tmpFilePath, List<Rule> all_rulles)
+        {
+            if (!File.Exists(tmpFilePath))
+            {
+                foreach (Rule rule in all_rulles)
+                {
+                    string ruleText = $"(defrule {rule.description.Replace(' ', '_')}\n(declare(salience 40))\n";
+                    foreach (Fact premise in rule.premises)
+                    {
+                        ruleText += $"(barParam(argument {premise.description.Replace(' ', '_')}))\n";
+                    }
+                    ruleText += "=>\n" +
+                        $"(assert(barParam(argument {rule.conclusion.description.Replace(' ', '_')})))\n" +
+                        $"(assert(appendmessagehalt \"{rule.description}\"))\n";
+
+                    // writing to file
+                    using (StreamWriter sw = File.AppendText(tmpFilePath))
+                    {
+                        sw.WriteLine(ruleText);
+                    }
+                }
+                //ConcatFiles(tmpFilePath, clipsFilePath);
+            }
+        }
+
+        static void ConcatFiles(string pathFrom, string pathTo)
+        {
+            string text = "";
+            using (StreamReader sr = File.OpenText(pathFrom))
+            {
+                string s = "";
+                while ((s = sr.ReadLine()) != null)
+                {
+                    text += s;
+                }
+            }
+
+            using (StreamWriter sw = File.AppendText(pathTo))
+            {
+                sw.WriteLine(";========================================================");
+                sw.WriteLine(text);
+            }
         }
     }
 }
