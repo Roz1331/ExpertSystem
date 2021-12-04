@@ -220,5 +220,27 @@ namespace ExpertSystem
             initialFacts_chbx.ClearSelected();
         }
 
+        private void fixFacts_Click(object sender, EventArgs e)
+        {
+            List<CheckedListBox> chlbList = new List<CheckedListBox>();
+            chlbList.Add(locationFacts_chbx);
+            chlbList.Add(alcoholFacts_chbx);
+            chlbList.Add(budgetFacts_chbx);
+            chlbList.Add(companyFacts_chbx);
+            chlbList.Add(initialFacts_chbx);
+
+            outputBox.Text += "Добавленные факты:\r\n";
+            foreach (CheckedListBox chlb in chlbList)
+            {
+                foreach(var selectedFact in chlb.CheckedItems)
+                {
+                    string str = selectedFact.ToString().Replace(' ', '_').Replace("\"", "");
+                    char ch = str[0];
+                    outputBox.Text += str + "\r\n";
+                    clips.Eval($"(assert(barParam(param {str})))");
+                }
+            }
+
+        }
     }
 }

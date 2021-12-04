@@ -125,11 +125,11 @@ namespace ExpertSystem
                     string ruleText = $"(defrule {rule.description.Replace(' ', '_')}\n(declare(salience 40))\n";
                     foreach (Fact premise in rule.premises)
                     {
-                        ruleText += $"(barParam(argument {premise.description.Replace(' ', '_')}))\n";
+                        ruleText += $"(barParam(param {premise.description.Replace(' ', '_')}))\n";
                     }
                     ruleText += "=>\n" +
-                        $"(assert(barParam(argument {rule.conclusion.description.Replace(' ', '_')})))\n" +
-                        $"(assert(appendmessagehalt \"{rule.description}\"))\n";
+                        $"(assert(barParam(param {rule.conclusion.description.Replace(' ', '_')})))\n" +
+                        $"(assert(appendmessagehalt \"{rule.description}\")))\n";
 
                     // writing to file
                     using (StreamWriter sw = File.AppendText(tmpFilePath))

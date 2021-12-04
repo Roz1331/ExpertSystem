@@ -49,6 +49,7 @@
             this.clipsOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.clipsSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.fixFacts = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -188,6 +189,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.fixFacts);
             this.panel2.Controls.Add(this.voicesBox);
             this.panel2.Controls.Add(this.fontButton);
             this.panel2.Controls.Add(this.nextButton);
@@ -277,6 +279,16 @@
             this.clipsSaveFileDialog.Filter = "CLIPS files|*.clp|All files|*.*";
             this.clipsSaveFileDialog.Title = "Созранить файл как...";
             // 
+            // fixFacts
+            // 
+            this.fixFacts.Location = new System.Drawing.Point(934, 15);
+            this.fixFacts.Name = "fixFacts";
+            this.fixFacts.Size = new System.Drawing.Size(196, 39);
+            this.fixFacts.TabIndex = 11;
+            this.fixFacts.Text = "Зафиксировать факты";
+            this.fixFacts.UseVisualStyleBackColor = true;
+            this.fixFacts.Click += new System.EventHandler(this.fixFacts_Click);
+            // 
             // ClipsFormsExample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -323,6 +335,7 @@
         private System.Windows.Forms.CheckedListBox companyFacts_chbx;
         private System.Windows.Forms.CheckedListBox alcoholFacts_chbx;
         private System.Windows.Forms.CheckedListBox locationFacts_chbx;
+        private System.Windows.Forms.Button fixFacts;
     }
 }
 
