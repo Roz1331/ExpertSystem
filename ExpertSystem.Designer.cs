@@ -238,7 +238,7 @@
             // resetButton
             // 
             this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.resetButton.Location = new System.Drawing.Point(1137, 15);
+            this.resetButton.Location = new System.Drawing.Point(920, 18);
             this.resetButton.Margin = new System.Windows.Forms.Padding(4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(160, 37);
@@ -281,11 +281,11 @@
             // 
             // fixFacts
             // 
-            this.fixFacts.Location = new System.Drawing.Point(934, 15);
+            this.fixFacts.Location = new System.Drawing.Point(1096, 16);
             this.fixFacts.Name = "fixFacts";
-            this.fixFacts.Size = new System.Drawing.Size(196, 39);
+            this.fixFacts.Size = new System.Drawing.Size(196, 38);
             this.fixFacts.TabIndex = 11;
-            this.fixFacts.Text = "Зафиксировать факты";
+            this.fixFacts.Text = "Погнали!";
             this.fixFacts.UseVisualStyleBackColor = true;
             this.fixFacts.Click += new System.EventHandler(this.fixFacts_Click);
             // 

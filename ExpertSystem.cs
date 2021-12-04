@@ -117,7 +117,7 @@ namespace ExpertSystem
                 LexemeValue da = (LexemeValue)damf[i];
                 byte[] bytes = Encoding.Default.GetBytes(da.Value);
                 string message = Encoding.UTF8.GetString(bytes);
-                synth.SpeakAsync(message);
+                //synth.SpeakAsync(message);
                 outputBox.Text += message + System.Environment.NewLine;
             }
 
@@ -135,11 +135,9 @@ namespace ExpertSystem
                     outputBox.Text += "Добавлен вариант для распознавания " + message + System.Environment.NewLine;
                 }
             }
-            
-            if(vamf.Count == 0)
+
+            if (vamf.Count == 0)
                 clips.Eval("(assert (clearmessage))");
-            else
-                NewRecognPhrases(phrases);
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
@@ -227,7 +225,7 @@ namespace ExpertSystem
             chlbList.Add(alcoholFacts_chbx);
             chlbList.Add(budgetFacts_chbx);
             chlbList.Add(companyFacts_chbx);
-            chlbList.Add(initialFacts_chbx);
+            //chlbList.Add(initialFacts_chbx);
 
             outputBox.Text += "Добавленные факты:\r\n";
             foreach (CheckedListBox chlb in chlbList)
@@ -235,12 +233,27 @@ namespace ExpertSystem
                 foreach(var selectedFact in chlb.CheckedItems)
                 {
                     string str = selectedFact.ToString().Replace(' ', '_').Replace("\"", "");
-                    char ch = str[0];
                     outputBox.Text += str + "\r\n";
                     clips.Eval($"(assert(barParam(param {str})))");
                 }
             }
-
+            for (int i = 0; i < initialFacts_chbx.Items.Count; i++)
+            {
+                if (initialFacts_chbx.GetItemChecked(i))
+                {
+                    //usedFacts.Add(initialFacts[i]);
+                    string str = initialFacts[i].description.Replace(' ', '_').Replace("\"", "");
+                    outputBox.Text += str + "\r\n";
+                    clips.Eval($"(assert(barParam(param {str})))");
+                }
+                else
+                {
+                    //usedFacts.Add(initialNegativeFacts[i]);
+                    string str = initialNegativeFacts[i].description.Replace(' ', '_').Replace("\"", "");
+                    outputBox.Text += str + "\r\n";
+                    clips.Eval($"(assert(barParam(param {str})))");
+                }
+            }
         }
     }
 }
