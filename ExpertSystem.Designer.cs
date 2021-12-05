@@ -167,7 +167,7 @@
             this.initialFacts_chbx.FormattingEnabled = true;
             this.initialFacts_chbx.Location = new System.Drawing.Point(3, 470);
             this.initialFacts_chbx.Name = "initialFacts_chbx";
-            this.initialFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.initialFacts_chbx.Size = new System.Drawing.Size(247, 187);
             this.initialFacts_chbx.TabIndex = 6;
             this.initialFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
             // 
