@@ -32,12 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.codeBox = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.initialFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.budgetFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.companyFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.alcoholFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.locationFacts_chbx = new System.Windows.Forms.CheckedListBox();
             this.outputBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.voicesBox = new System.Windows.Forms.ComboBox();
@@ -50,13 +44,19 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.clipsSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.fixFacts = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.locationFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.alcoholFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.budgetFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.companyFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.initialFacts_chbx = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,10 +84,10 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel3);
+            this.splitContainer1.Panel2.Controls.Add(this.panel4);
             this.splitContainer1.Panel2.Controls.Add(this.outputBox);
             this.splitContainer1.Size = new System.Drawing.Size(1480, 746);
-            this.splitContainer1.SplitterDistance = 694;
+            this.splitContainer1.SplitterDistance = 504;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -100,91 +100,19 @@
             this.codeBox.Multiline = true;
             this.codeBox.Name = "codeBox";
             this.codeBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.codeBox.Size = new System.Drawing.Size(694, 746);
+            this.codeBox.Size = new System.Drawing.Size(500, 746);
             this.codeBox.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.initialFacts_chbx);
-            this.panel3.Controls.Add(this.budgetFacts_chbx);
-            this.panel3.Controls.Add(this.companyFacts_chbx);
-            this.panel3.Controls.Add(this.alcoholFacts_chbx);
-            this.panel3.Controls.Add(this.locationFacts_chbx);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 294);
-            this.panel3.MinimumSize = new System.Drawing.Size(693, 452);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(781, 452);
-            this.panel3.TabIndex = 2;
-            // 
-            // initialFacts_chbx
-            // 
-            this.initialFacts_chbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.initialFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.initialFacts_chbx.CheckOnClick = true;
-            this.initialFacts_chbx.FormattingEnabled = true;
-            this.initialFacts_chbx.Location = new System.Drawing.Point(0, 245);
-            this.initialFacts_chbx.Name = "initialFacts_chbx";
-            this.initialFacts_chbx.Size = new System.Drawing.Size(523, 204);
-            this.initialFacts_chbx.TabIndex = 5;
-            this.initialFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // budgetFacts_chbx
-            // 
-            this.budgetFacts_chbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.budgetFacts_chbx.CheckOnClick = true;
-            this.budgetFacts_chbx.FormattingEnabled = true;
-            this.budgetFacts_chbx.Location = new System.Drawing.Point(267, 120);
-            this.budgetFacts_chbx.Name = "budgetFacts_chbx";
-            this.budgetFacts_chbx.Size = new System.Drawing.Size(256, 119);
-            this.budgetFacts_chbx.TabIndex = 4;
-            this.budgetFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // companyFacts_chbx
-            // 
-            this.companyFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.companyFacts_chbx.CheckOnClick = true;
-            this.companyFacts_chbx.FormattingEnabled = true;
-            this.companyFacts_chbx.Location = new System.Drawing.Point(0, 120);
-            this.companyFacts_chbx.Name = "companyFacts_chbx";
-            this.companyFacts_chbx.Size = new System.Drawing.Size(261, 119);
-            this.companyFacts_chbx.TabIndex = 3;
-            this.companyFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // alcoholFacts_chbx
-            // 
-            this.alcoholFacts_chbx.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.alcoholFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.alcoholFacts_chbx.CheckOnClick = true;
-            this.alcoholFacts_chbx.FormattingEnabled = true;
-            this.alcoholFacts_chbx.Location = new System.Drawing.Point(267, 7);
-            this.alcoholFacts_chbx.Name = "alcoholFacts_chbx";
-            this.alcoholFacts_chbx.Size = new System.Drawing.Size(256, 102);
-            this.alcoholFacts_chbx.TabIndex = 2;
-            this.alcoholFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // locationFacts_chbx
-            // 
-            this.locationFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.locationFacts_chbx.CheckOnClick = true;
-            this.locationFacts_chbx.FormattingEnabled = true;
-            this.locationFacts_chbx.Location = new System.Drawing.Point(2, 7);
-            this.locationFacts_chbx.Name = "locationFacts_chbx";
-            this.locationFacts_chbx.Size = new System.Drawing.Size(259, 102);
-            this.locationFacts_chbx.TabIndex = 1;
-            this.locationFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
             // 
             // outputBox
             // 
-            this.outputBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.outputBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.outputBox.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.outputBox.Location = new System.Drawing.Point(0, 0);
             this.outputBox.Margin = new System.Windows.Forms.Padding(4);
             this.outputBox.Multiline = true;
             this.outputBox.Name = "outputBox";
             this.outputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputBox.Size = new System.Drawing.Size(781, 294);
+            this.outputBox.Size = new System.Drawing.Size(593, 746);
             this.outputBox.TabIndex = 1;
             // 
             // panel2
@@ -289,6 +217,74 @@
             this.fixFacts.UseVisualStyleBackColor = true;
             this.fixFacts.Click += new System.EventHandler(this.fixFacts_Click);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.locationFacts_chbx);
+            this.panel4.Controls.Add(this.alcoholFacts_chbx);
+            this.panel4.Controls.Add(this.budgetFacts_chbx);
+            this.panel4.Controls.Add(this.companyFacts_chbx);
+            this.panel4.Controls.Add(this.initialFacts_chbx);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(711, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(260, 746);
+            this.panel4.TabIndex = 3;
+            // 
+            // locationFacts_chbx
+            // 
+            this.locationFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.locationFacts_chbx.CheckOnClick = true;
+            this.locationFacts_chbx.FormattingEnabled = true;
+            this.locationFacts_chbx.Location = new System.Drawing.Point(3, 3);
+            this.locationFacts_chbx.Name = "locationFacts_chbx";
+            this.locationFacts_chbx.Size = new System.Drawing.Size(247, 85);
+            this.locationFacts_chbx.TabIndex = 2;
+            this.locationFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // alcoholFacts_chbx
+            // 
+            this.alcoholFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.alcoholFacts_chbx.CheckOnClick = true;
+            this.alcoholFacts_chbx.FormattingEnabled = true;
+            this.alcoholFacts_chbx.Location = new System.Drawing.Point(3, 94);
+            this.alcoholFacts_chbx.Name = "alcoholFacts_chbx";
+            this.alcoholFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.alcoholFacts_chbx.TabIndex = 3;
+            this.alcoholFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // budgetFacts_chbx
+            // 
+            this.budgetFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.budgetFacts_chbx.CheckOnClick = true;
+            this.budgetFacts_chbx.FormattingEnabled = true;
+            this.budgetFacts_chbx.Location = new System.Drawing.Point(3, 219);
+            this.budgetFacts_chbx.Name = "budgetFacts_chbx";
+            this.budgetFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.budgetFacts_chbx.TabIndex = 4;
+            this.budgetFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // companyFacts_chbx
+            // 
+            this.companyFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.companyFacts_chbx.CheckOnClick = true;
+            this.companyFacts_chbx.FormattingEnabled = true;
+            this.companyFacts_chbx.Location = new System.Drawing.Point(3, 345);
+            this.companyFacts_chbx.Name = "companyFacts_chbx";
+            this.companyFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.companyFacts_chbx.TabIndex = 5;
+            this.companyFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // initialFacts_chbx
+            // 
+            this.initialFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.initialFacts_chbx.CheckOnClick = true;
+            this.initialFacts_chbx.FormattingEnabled = true;
+            this.initialFacts_chbx.Location = new System.Drawing.Point(3, 470);
+            this.initialFacts_chbx.Name = "initialFacts_chbx";
+            this.initialFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.initialFacts_chbx.TabIndex = 6;
+            this.initialFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
             // ClipsFormsExample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -308,8 +304,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,13 +325,13 @@
     private System.Windows.Forms.FontDialog fontDialog1;
     private System.Windows.Forms.SaveFileDialog clipsSaveFileDialog;
         private System.Windows.Forms.ComboBox voicesBox;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.CheckedListBox initialFacts_chbx;
+        private System.Windows.Forms.Button fixFacts;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.CheckedListBox locationFacts_chbx;
+        private System.Windows.Forms.CheckedListBox alcoholFacts_chbx;
         private System.Windows.Forms.CheckedListBox budgetFacts_chbx;
         private System.Windows.Forms.CheckedListBox companyFacts_chbx;
-        private System.Windows.Forms.CheckedListBox alcoholFacts_chbx;
-        private System.Windows.Forms.CheckedListBox locationFacts_chbx;
-        private System.Windows.Forms.Button fixFacts;
+        private System.Windows.Forms.CheckedListBox initialFacts_chbx;
     }
 }
 

@@ -118,7 +118,19 @@ namespace ExpertSystem
                 byte[] bytes = Encoding.Default.GetBytes(da.Value);
                 string message = Encoding.UTF8.GetString(bytes);
                 //synth.SpeakAsync(message);
-                outputBox.Text += message + System.Environment.NewLine;
+                if(message.StartsWith("ну_вот"))
+                {
+                    var result = MessageBox.Show("Мы вам подобрали бары. Годится?", "Q&A", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes || result == DialogResult.No)
+                    {
+                        string answr = result == DialogResult.Yes ? "Классно_здорово_суперски" : "Неклассно_нездорово_несуперски";
+                        clips.Eval($"(assert(barParam(param { answr })))");
+                        outputBox.Text += "Добавлен факт: " + answr + System.Environment.NewLine;
+                    }
+
+                }
+                //else if()
+                else outputBox.Text += message + System.Environment.NewLine;
             }
 
             var phrases = new List<string>();
@@ -225,7 +237,6 @@ namespace ExpertSystem
             chlbList.Add(alcoholFacts_chbx);
             chlbList.Add(budgetFacts_chbx);
             chlbList.Add(companyFacts_chbx);
-            //chlbList.Add(initialFacts_chbx);
 
             outputBox.Text += "Добавленные факты:\r\n";
             foreach (CheckedListBox chlb in chlbList)
@@ -241,14 +252,12 @@ namespace ExpertSystem
             {
                 if (initialFacts_chbx.GetItemChecked(i))
                 {
-                    //usedFacts.Add(initialFacts[i]);
                     string str = initialFacts[i].description.Replace(' ', '_').Replace("\"", "");
                     outputBox.Text += str + "\r\n";
                     clips.Eval($"(assert(barParam(param {str})))");
                 }
                 else
                 {
-                    //usedFacts.Add(initialNegativeFacts[i]);
                     string str = initialNegativeFacts[i].description.Replace(' ', '_').Replace("\"", "");
                     outputBox.Text += str + "\r\n";
                     clips.Eval($"(assert(barParam(param {str})))");

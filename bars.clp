@@ -84,6 +84,30 @@
 	(slot param)
 )
 
+(defrule Нормуль_не_нормуль
+	(declare (salience 10))
+	=>
+	(assert (appendmessagehalt "ну_вот_и_все"))
+)
+
+(defrule Финиш
+	(declare (salience 80))
+	(barParam (param Классно_здорово_суперски))
+	=>
+	(assert (barParam (param Бары_подобраны)))
+	(assert (appendmessagehalt "Классно_здорово_суперски -> Бары_подобраны"))
+)
+
+(defrule Нефиниш
+	(declare (salience 80))
+	(barParam (param Неклассно_нездорово_несуперски))
+	=>
+	(assert (barParam (param Что-то_пошло_не_так)))
+	(assert (appendmessagehalt "Неклассно_нездорово_несуперски -> Что-то_пошло_не_так"))
+)
+
+;======================================================================================
+
 (defrule Для_больших_компаний_-_только_большие_бары
 (declare(salience 40))
 (barParam(param Большая_компания))
