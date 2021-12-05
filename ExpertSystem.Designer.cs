@@ -32,8 +32,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.codeBox = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.locationFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.alcoholFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.budgetFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.companyFacts_chbx = new System.Windows.Forms.CheckedListBox();
+            this.initialFacts_chbx = new System.Windows.Forms.CheckedListBox();
             this.outputBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.fixFacts = new System.Windows.Forms.Button();
             this.voicesBox = new System.Windows.Forms.ComboBox();
             this.fontButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
@@ -43,20 +50,13 @@
             this.clipsOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.clipsSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.fixFacts = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.locationFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.alcoholFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.budgetFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.companyFacts_chbx = new System.Windows.Forms.CheckedListBox();
-            this.initialFacts_chbx = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,8 +100,76 @@
             this.codeBox.Multiline = true;
             this.codeBox.Name = "codeBox";
             this.codeBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.codeBox.Size = new System.Drawing.Size(500, 746);
+            this.codeBox.Size = new System.Drawing.Size(504, 746);
             this.codeBox.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.locationFacts_chbx);
+            this.panel4.Controls.Add(this.alcoholFacts_chbx);
+            this.panel4.Controls.Add(this.budgetFacts_chbx);
+            this.panel4.Controls.Add(this.companyFacts_chbx);
+            this.panel4.Controls.Add(this.initialFacts_chbx);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(711, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(260, 746);
+            this.panel4.TabIndex = 3;
+            // 
+            // locationFacts_chbx
+            // 
+            this.locationFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.locationFacts_chbx.CheckOnClick = true;
+            this.locationFacts_chbx.FormattingEnabled = true;
+            this.locationFacts_chbx.Location = new System.Drawing.Point(3, 3);
+            this.locationFacts_chbx.Name = "locationFacts_chbx";
+            this.locationFacts_chbx.Size = new System.Drawing.Size(247, 85);
+            this.locationFacts_chbx.TabIndex = 2;
+            this.locationFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // alcoholFacts_chbx
+            // 
+            this.alcoholFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.alcoholFacts_chbx.CheckOnClick = true;
+            this.alcoholFacts_chbx.FormattingEnabled = true;
+            this.alcoholFacts_chbx.Location = new System.Drawing.Point(3, 94);
+            this.alcoholFacts_chbx.Name = "alcoholFacts_chbx";
+            this.alcoholFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.alcoholFacts_chbx.TabIndex = 3;
+            this.alcoholFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // budgetFacts_chbx
+            // 
+            this.budgetFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.budgetFacts_chbx.CheckOnClick = true;
+            this.budgetFacts_chbx.FormattingEnabled = true;
+            this.budgetFacts_chbx.Location = new System.Drawing.Point(3, 219);
+            this.budgetFacts_chbx.Name = "budgetFacts_chbx";
+            this.budgetFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.budgetFacts_chbx.TabIndex = 4;
+            this.budgetFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // companyFacts_chbx
+            // 
+            this.companyFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.companyFacts_chbx.CheckOnClick = true;
+            this.companyFacts_chbx.FormattingEnabled = true;
+            this.companyFacts_chbx.Location = new System.Drawing.Point(3, 345);
+            this.companyFacts_chbx.Name = "companyFacts_chbx";
+            this.companyFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.companyFacts_chbx.TabIndex = 5;
+            this.companyFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
+            // 
+            // initialFacts_chbx
+            // 
+            this.initialFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.initialFacts_chbx.CheckOnClick = true;
+            this.initialFacts_chbx.FormattingEnabled = true;
+            this.initialFacts_chbx.Location = new System.Drawing.Point(3, 470);
+            this.initialFacts_chbx.Name = "initialFacts_chbx";
+            this.initialFacts_chbx.Size = new System.Drawing.Size(247, 119);
+            this.initialFacts_chbx.TabIndex = 6;
+            this.initialFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
             // 
             // outputBox
             // 
@@ -130,6 +198,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1482, 66);
             this.panel2.TabIndex = 6;
+            // 
+            // fixFacts
+            // 
+            this.fixFacts.Location = new System.Drawing.Point(1096, 16);
+            this.fixFacts.Name = "fixFacts";
+            this.fixFacts.Size = new System.Drawing.Size(196, 38);
+            this.fixFacts.TabIndex = 11;
+            this.fixFacts.Text = "Погнали!";
+            this.fixFacts.UseVisualStyleBackColor = true;
+            this.fixFacts.Click += new System.EventHandler(this.fixFacts_Click);
             // 
             // voicesBox
             // 
@@ -207,84 +285,6 @@
             this.clipsSaveFileDialog.Filter = "CLIPS files|*.clp|All files|*.*";
             this.clipsSaveFileDialog.Title = "Созранить файл как...";
             // 
-            // fixFacts
-            // 
-            this.fixFacts.Location = new System.Drawing.Point(1096, 16);
-            this.fixFacts.Name = "fixFacts";
-            this.fixFacts.Size = new System.Drawing.Size(196, 38);
-            this.fixFacts.TabIndex = 11;
-            this.fixFacts.Text = "Погнали!";
-            this.fixFacts.UseVisualStyleBackColor = true;
-            this.fixFacts.Click += new System.EventHandler(this.fixFacts_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.locationFacts_chbx);
-            this.panel4.Controls.Add(this.alcoholFacts_chbx);
-            this.panel4.Controls.Add(this.budgetFacts_chbx);
-            this.panel4.Controls.Add(this.companyFacts_chbx);
-            this.panel4.Controls.Add(this.initialFacts_chbx);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(711, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(260, 746);
-            this.panel4.TabIndex = 3;
-            // 
-            // locationFacts_chbx
-            // 
-            this.locationFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.locationFacts_chbx.CheckOnClick = true;
-            this.locationFacts_chbx.FormattingEnabled = true;
-            this.locationFacts_chbx.Location = new System.Drawing.Point(3, 3);
-            this.locationFacts_chbx.Name = "locationFacts_chbx";
-            this.locationFacts_chbx.Size = new System.Drawing.Size(247, 85);
-            this.locationFacts_chbx.TabIndex = 2;
-            this.locationFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // alcoholFacts_chbx
-            // 
-            this.alcoholFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.alcoholFacts_chbx.CheckOnClick = true;
-            this.alcoholFacts_chbx.FormattingEnabled = true;
-            this.alcoholFacts_chbx.Location = new System.Drawing.Point(3, 94);
-            this.alcoholFacts_chbx.Name = "alcoholFacts_chbx";
-            this.alcoholFacts_chbx.Size = new System.Drawing.Size(247, 119);
-            this.alcoholFacts_chbx.TabIndex = 3;
-            this.alcoholFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // budgetFacts_chbx
-            // 
-            this.budgetFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.budgetFacts_chbx.CheckOnClick = true;
-            this.budgetFacts_chbx.FormattingEnabled = true;
-            this.budgetFacts_chbx.Location = new System.Drawing.Point(3, 219);
-            this.budgetFacts_chbx.Name = "budgetFacts_chbx";
-            this.budgetFacts_chbx.Size = new System.Drawing.Size(247, 119);
-            this.budgetFacts_chbx.TabIndex = 4;
-            this.budgetFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // companyFacts_chbx
-            // 
-            this.companyFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.companyFacts_chbx.CheckOnClick = true;
-            this.companyFacts_chbx.FormattingEnabled = true;
-            this.companyFacts_chbx.Location = new System.Drawing.Point(3, 345);
-            this.companyFacts_chbx.Name = "companyFacts_chbx";
-            this.companyFacts_chbx.Size = new System.Drawing.Size(247, 119);
-            this.companyFacts_chbx.TabIndex = 5;
-            this.companyFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
-            // initialFacts_chbx
-            // 
-            this.initialFacts_chbx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.initialFacts_chbx.CheckOnClick = true;
-            this.initialFacts_chbx.FormattingEnabled = true;
-            this.initialFacts_chbx.Location = new System.Drawing.Point(3, 470);
-            this.initialFacts_chbx.Name = "initialFacts_chbx";
-            this.initialFacts_chbx.Size = new System.Drawing.Size(247, 119);
-            this.initialFacts_chbx.TabIndex = 6;
-            this.initialFacts_chbx.SelectedIndexChanged += new System.EventHandler(this.chbx_SelectedIndexChanged);
-            // 
             // ClipsFormsExample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -304,8 +304,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

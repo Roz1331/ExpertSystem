@@ -118,18 +118,21 @@ namespace ExpertSystem
                 byte[] bytes = Encoding.Default.GetBytes(da.Value);
                 string message = Encoding.UTF8.GetString(bytes);
                 //synth.SpeakAsync(message);
-                if(message.StartsWith("ну_вот"))
+                if (message.StartsWith("ну_вот"))
                 {
                     var result = MessageBox.Show("Мы вам подобрали бары. Годится?", "Q&A", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes || result == DialogResult.No)
                     {
-                        string answr = result == DialogResult.Yes ? "Классно_здорово_суперски" : "Неклассно_нездорово_несуперски";
-                        clips.Eval($"(assert(barParam(param { answr })))");
-                        outputBox.Text += "Добавлен факт: " + answr + System.Environment.NewLine;
+                        string gOOd = result == DialogResult.Yes ? "Классно_здорово_суперски" : "Неклассно_нездорово_несуперски";
+                        clips.Eval($"(assert(barParam(param { gOOd })))");
+                        outputBox.Text += "Добавлен факт: " + gOOd + System.Environment.NewLine;
                     }
-
                 }
-                //else if()
+                else if (message.EndsWith("Бары_подобраны") || message.EndsWith("Что-то_пошло_не_так"))
+                {
+                    outputBox.Text += message + System.Environment.NewLine;
+                    nextButton.Enabled = false;
+                }
                 else outputBox.Text += message + System.Environment.NewLine;
             }
 
@@ -178,17 +181,19 @@ namespace ExpertSystem
         {
             if (clipsOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string filePath = clipsOpenFileDialog.FileName;
-                codeBox.Text = System.IO.File.ReadAllText(filePath);
-
-                Text = "Экспертная система \"Помощник в выборе бара\" – " + filePath;
-
-                Parser.ParseFactsAndRules("..\\..\\facts_rules_final.txt", ref initialFacts, ref initialAlcoholFacts, ref initialBudgetFacts,
+                if (codeBox.Text.Length == 0)
+                {
+                    Parser.ParseFactsAndRules("..\\..\\facts_rules_final.txt", ref initialFacts, ref initialAlcoholFacts, ref initialBudgetFacts,
                     ref initialLocationFacts, ref initialCompanyFacts, ref initialNegativeFacts, ref finalFacts, ref all_rules);
 
-                DisplayAllFacts();
+                    DisplayAllFacts();
 
-                Parser.ParseRule("test.txt", all_rules);
+                    Parser.ParseRule("test.txt", all_rules);
+                }
+                string filePath = clipsOpenFileDialog.FileName;
+                codeBox.Text += System.IO.File.ReadAllText(filePath);
+
+                Text = "Экспертная система \"Помощник в выборе бара\" – " + filePath;                
             }
         }
 
