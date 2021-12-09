@@ -163,6 +163,7 @@ namespace ExpertSystem
 
         private void resetBtn_Click(object sender, EventArgs e)
         {
+            nextButton.Enabled = true;
             outputBox.Text = "Выполнены команды Clear и Reset." + System.Environment.NewLine;
             //  Здесь сохранение в файл, и потом инициализация через него
             clips.Clear();
