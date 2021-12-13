@@ -118,26 +118,38 @@ namespace ExpertSystem
 
         public static void ParseRule(string tmpFilePath, List<Rule> all_rulles)
         {
-            if (!File.Exists(tmpFilePath))
+            foreach (Rule rule in all_rulles)
             {
-                foreach (Rule rule in all_rulles)
+                string ruleText = $"(defrule {rule.description.Replace(' ', '_')}\n(declare(salience 40))\n";
+                string minString = "";
+                int index = 0;
+                foreach (Fact premise in rule.premises)
                 {
-                    string ruleText = $"(defrule {rule.description.Replace(' ', '_')}\n(declare(salience 40))\n";
-                    foreach (Fact premise in rule.premises)
-                    {
-                        ruleText += $"(barParam(param {premise.description.Replace(' ', '_')}))\n";
-                    }
-                    ruleText += "=>\n" +
-                        $"(assert(barParam(param {rule.conclusion.description.Replace(' ', '_')})))\n" +
-                        $"(assert(appendmessagehalt \"{rule.description}\")))\n";
-
-                    // writing to file
-                    using (StreamWriter sw = File.AppendText(tmpFilePath))
-                    {
-                        sw.WriteLine(ruleText);
-                    }
+                    minString += " ?c" + (++index).ToString();
+                    ruleText += $"(barParam(param {premise.description.Replace(' ', '_')})(confidence ?c{index}))\r\n"; // добавили поле для коэф уверенности
                 }
-                //ConcatFiles(tmpFilePath, clipsFilePath);
+
+                Random rand = new Random();
+                double minCoef = 0.7;
+                double maxCoef = 1.0;
+                // задаем случайное число для коэффициента уверенности правила
+                // рассматриваем число double только с 2 цифрами после запятой
+                string rule_coef = Math.Round(minCoef + rand.NextDouble() * (maxCoef - minCoef), 2).ToString().Replace(",",".");
+
+                if(rule.premises.Count == 1)
+                    ruleText += "=>\n" +
+                    $"(assert(barParam(param {rule.conclusion.description.Replace(' ', '_')})(confidence (* {rule_coef} ?c1)))\r\n" +
+                    $"(assert(appendmessagehalt (str-cat \"{rule.description}(\"(* {rule_coef} ?c1)\")\"))))\r\n\r\n";
+                else
+                    ruleText += "=>\n" +
+                    $"(assert(barParam(param {rule.conclusion.description.Replace(' ', '_')})(confidence (* {rule_coef} (min{minString})))))\r\n" +
+                    $"(assert(appendmessagehalt (str-cat \"{rule.description}(\"(* {rule_coef} (min{minString}))\")\"))))\r\n\r\n";
+
+                // writing to file
+                using (StreamWriter sw = File.AppendText(tmpFilePath))
+                {
+                    sw.WriteLine(ruleText);
+                }
             }
         }
 
