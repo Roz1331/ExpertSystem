@@ -90,6 +90,18 @@
 	(assert (appendmessagehalt "ну_вот_и_все"))
 )
 
+(defrule merge_barParam
+	(declare (salience 98))
+	?n1<-(barParam (param ?param1) (confidence ?с1))
+	?n2<-(barParam (param ?param2) (confidence ?с2))
+	(test (= 0 (str-compare ?param1 ?param2)))
+	(test (<> ?с1 ?с2))
+	=>
+	(modify ?n1 (confidence (* (+ ?с1 ?с2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?param1" (" ?с1 ", " ?с2 ") => " (- (+ ?с1 ?с2) (* ?с1 ?с2)))))
+)
+
 (defrule Финиш
 	(declare (salience 80))
 	(barParam (param Классно_здорово_суперски))

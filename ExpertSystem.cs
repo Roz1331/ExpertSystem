@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using CLIPSNET;
 
@@ -182,16 +183,11 @@ namespace ExpertSystem
         {
             if (clipsOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (codeBox.Text.Length == 0)
-                {
-                    Parser.ParseFactsAndRules("..\\..\\facts_rules_final.txt", ref initialFacts, ref initialAlcoholFacts, ref initialBudgetFacts,
-                    ref initialLocationFacts, ref initialCompanyFacts, ref initialNegativeFacts, ref finalFacts, ref all_rules);
-
-                    DisplayAllFacts();
-
-                    Parser.ParseRule("test.txt", all_rules);
-                }
                 string filePath = clipsOpenFileDialog.FileName;
+                if (codeBox.Text.Length == 0 && !filePath.Equals("..\\..\\bars_confidence.clp"))
+                {
+                    DisplayAllFacts();
+                }
                 codeBox.Text += System.IO.File.ReadAllText(filePath);
 
                 Text = "Экспертная система \"Помощник в выборе бара\" – " + filePath;                
@@ -244,14 +240,22 @@ namespace ExpertSystem
             chlbList.Add(budgetFacts_chbx);
             chlbList.Add(companyFacts_chbx);
 
+
             outputBox.Text += "Добавленные факты:\r\n";
             foreach (CheckedListBox chlb in chlbList)
             {
                 foreach(var selectedFact in chlb.CheckedItems)
                 {
                     string str = selectedFact.ToString().Replace(' ', '_').Replace("\"", "");
-                    outputBox.Text += str + "\r\n";
-                    clips.Eval($"(assert(barParam(param {str})))");
+                    ConfidenceChoosing cf = new ConfidenceChoosing(selectedFact.ToString());
+                    string coef = "";
+                    if (cf.ShowDialog() == DialogResult.OK)
+                    {
+                        coef = cf.Selected.Replace(",", ".");
+                    }
+                    //добавить уверенность как поле факта в клипсе
+                    clips.Eval($"(assert(barParam(param {str})(confidence {coef})))");
+                    outputBox.Text += str + "(" + coef + ")" + "\r\n";
                 }
             }
             for (int i = 0; i < initialFacts_chbx.Items.Count; i++)
@@ -269,6 +273,19 @@ namespace ExpertSystem
                     clips.Eval($"(assert(barParam(param {str})))");
                 }
             }
+        }
+
+        private void ClipsFormsExample_Load(object sender, EventArgs e)
+        {
+            if (File.Exists("..\\..\\bars_confidence.clp"))
+                File.Delete("..\\..\\bars_confidence.clp");
+            if (File.Exists("..\\..\\test.txt"))
+                File.Delete("..\\..\\test.txt");
+
+            Parser.ParseFactsAndRules("..\\..\\facts_rules_final.txt", ref initialFacts, ref initialAlcoholFacts, ref initialBudgetFacts,
+                    ref initialLocationFacts, ref initialCompanyFacts, ref initialNegativeFacts, ref finalFacts, ref all_rules);
+            Parser.ParseRule("test.txt", all_rules);
+            File.Move("test.txt", "..\\..\\bars_confidence.clp");
         }
     }
 }

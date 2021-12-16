@@ -297,6 +297,7 @@
             this.MinimumSize = new System.Drawing.Size(1500, 859);
             this.Name = "ClipsFormsExample";
             this.Text = "Помощник в выборе бара";
+            this.Load += new System.EventHandler(this.ClipsFormsExample_Load);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

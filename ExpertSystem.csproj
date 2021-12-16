@@ -107,6 +107,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfidenceChoosing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfidenceChoosing.Designer.cs">
+      <DependentUpon>ConfidenceChoosing.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExpertSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rule.cs" />
+    <EmbeddedResource Include="ConfidenceChoosing.resx">
+      <DependentUpon>ConfidenceChoosing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExpertSystem.resx">
       <DependentUpon>ExpertSystem.cs</DependentUpon>
     </EmbeddedResource>
