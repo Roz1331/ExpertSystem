@@ -137,7 +137,7 @@ namespace ExpertSystem
 
                 if(rule.premises.Count == 1)
                     ruleText += "=>\r\n" +
-                    $"(assert(barParam(param {rule.conclusion.description.Replace(' ', '_')})(confidence (* {rule_coef} ?c1)))\r\n" +
+                    $"(assert(barParam(param {rule.conclusion.description.Replace(' ', '_')})(confidence (* {rule_coef} ?c1))))\r\n" +
                     $"(assert(appendmessagehalt (str-cat \"{rule.description}(\"(* {rule_coef} ?c1)\")\"))))\r\n\r\n";
                 else
                     ruleText += "=>\r\n" +

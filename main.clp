@@ -85,6 +85,18 @@
 	(slot confidence)
 )
 
+(defrule merge_barParam
+	(declare (salience 98))
+	?n1<-(barParam (param ?param1) (confidence ?с1))
+	?n2<-(barParam (param ?param2) (confidence ?с2))
+	(test (= 0 (str-compare ?param1 ?param2)))
+	(test (<> ?с1 ?с2))
+	=>
+	(modify ?n1 (confidence (* (+ ?с1 ?с2) 0.5)))
+	(retract ?n2)
+	(assert (appendmessagehalt (str-cat ?param1" (" ?с1 ", " ?с2 ") => " (- (+ ?с1 ?с2) (* ?с1 ?с2)))))
+)
+
 (defrule Нормуль_не_нормуль
 	(declare (salience 10))
 	=>
@@ -107,17 +119,7 @@
 	(assert (appendmessagehalt "Неклассно_нездорово_несуперски -> Что-то_пошло_не_так"))
 )
 
-(defrule merge_barParam
-	(declare (salience 98))
-	?n1<-(barParam (param ?param1) (confidence ?с1))
-	?n2<-(barParam (param ?param2) (confidence ?с2))
-	(test (= 0 (str-compare ?param1 ?param2)))
-	(test (<> ?с1 ?с2))
-	=>
-	(modify ?n1 (confidence (* (+ ?с1 ?с2) 0.5)))
-	(retract ?n2)
-	(assert (appendmessagehalt (str-cat ?param1" (" ?с1 ", " ?с2 ") => " (- (+ ?с1 ?с2) (* ?с1 ?с2)))))
-)
+
 
 ;======================================================================================
 

@@ -122,18 +122,21 @@ namespace ExpertSystem
                 if (message.StartsWith("ну_вот"))
                 {
                     var result = MessageBox.Show("Мы вам подобрали бары. Годится?", "Q&A", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes || result == DialogResult.No)
-                    {
-                        string gOOd = result == DialogResult.Yes ? "Классно_здорово_суперски" : "Неклассно_нездорово_несуперски";
-                        clips.Eval($"(assert(barParam(param { gOOd })))");
-                        outputBox.Text += "Добавлен факт: " + gOOd + System.Environment.NewLine;
-                    }
-                }
-                else if (message.EndsWith("Бары_подобраны") || message.EndsWith("Что-то_пошло_не_так"))
-                {
                     outputBox.Text += message + System.Environment.NewLine;
                     nextButton.Enabled = false;
+                    outputBox.Text += "Добавлен факт: " + "Готово" + System.Environment.NewLine;
+                    //if (result == DialogResult.Yes || result == DialogResult.No)
+                    //{
+                    //    string gOOd = result == DialogResult.Yes ? "Классно_здорово_суперски" : "Неклассно_нездорово_несуперски";
+                    //    clips.Eval($"(assert(barParam(param { gOOd })(confidence 1)))");
+                    //    outputBox.Text += "Добавлен факт: " + gOOd + System.Environment.NewLine;
+                    //}
                 }
+                //else if (message.EndsWith("Бары_подобраны") || message.EndsWith("Что-то_пошло_не_так"))
+                //{
+                //    outputBox.Text += message + System.Environment.NewLine;
+                //    nextButton.Enabled = false;
+                //}
                 else outputBox.Text += message + System.Environment.NewLine;
             }
 
@@ -258,19 +261,44 @@ namespace ExpertSystem
                     outputBox.Text += str + "(" + coef + ")" + "\r\n";
                 }
             }
+
+            var result = MessageBox.Show("Вы уверены на 100% в том, что НЕ отмеченные фитчи вам не нужны?", "Q&A", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             for (int i = 0; i < initialFacts_chbx.Items.Count; i++)
             {
                 if (initialFacts_chbx.GetItemChecked(i))
                 {
                     string str = initialFacts[i].description.Replace(' ', '_').Replace("\"", "");
-                    outputBox.Text += str + "\r\n";
-                    clips.Eval($"(assert(barParam(param {str})))");
+                    ConfidenceChoosing cf = new ConfidenceChoosing(initialFacts[i].description);
+                    string coef = "";
+                    if (cf.ShowDialog() == DialogResult.OK)
+                    {
+                        coef = cf.Selected.Replace(",", ".");
+                    }
+
+                    //добавить уверенность как поле факта в клипсе
+                    clips.Eval($"(assert(barParam(param {str})(confidence {coef})))");
+                    outputBox.Text += str + "(" + coef + ")" + "\r\n";
                 }
                 else
                 {
                     string str = initialNegativeFacts[i].description.Replace(' ', '_').Replace("\"", "");
-                    outputBox.Text += str + "\r\n";
-                    clips.Eval($"(assert(barParam(param {str})))");
+                    string coef = "";
+                    if (result == DialogResult.Yes)
+                    {
+                        coef = "1.0";
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        //спросить уверенность
+                        ConfidenceChoosing cf = new ConfidenceChoosing("отрицания " + initialFacts[i].description);
+                        if (cf.ShowDialog() == DialogResult.OK)
+                        {
+                            coef = cf.Selected.Replace(",", ".");
+                        }
+                    }
+                    //добавить уверенность как поле факта в клипсе
+                    clips.Eval($"(assert(barParam(param {str})(confidence {coef})))");
+                    outputBox.Text += str + "(" + coef + ")" + "\r\n";
                 }
             }
         }
